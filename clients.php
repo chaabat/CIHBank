@@ -18,19 +18,28 @@
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                    Product name
+                    ID
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Color
+                    Nom
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Category
+                    Prenom
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Price
+                    Nationalité
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Action
+                    Genre
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Adress ID
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Modifier
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Supprimer
                 </th>
             </tr>
         </thead>
