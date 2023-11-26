@@ -1,7 +1,7 @@
 <?php
 
-$servername ="localhost";
-$username ="root";
+$servername = "localhost";
+$username = "root";
 $password = "";
 $dbname = "cihbank";
 
@@ -17,18 +17,22 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $usertype = $_POST["usertype"];
 
     if (!empty($username) && !empty($password)) {
-        $sql = "INSERT INTO users (username, password, nom, prenom, nationalite, genre, usertype) VALUES ('$username', '$password', '$nom', '$prenom', '$nationalite', '$genre', '$usertype')";
+        // Hash the password
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        $sql = "INSERT INTO users (username, password, nom, prenom, nationalite, genre, usertype) VALUES ('$username', '$hashedPassword', '$nom', '$prenom', '$nationalite', '$genre', '$usertype')";
         $result = mysqli_query($cnx, $sql);
 
         if ($result) {
-            // echo "success";
+            echo "success";
         } else {
-            // echo "error";
+            echo "error";
         }
     }
 }
 
 ?>
+
 
 
 

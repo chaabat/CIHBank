@@ -24,13 +24,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result) {
         $row = mysqli_fetch_array($result);
+        $hashedPassword = $row['password'];
 
         if ($row) {
             if ($row["usertype"] == "admin") {
                 // echo "admin";
 				header("location:clients.php");
 
-            } else if ($row["usertype"] == "user") {
+            } else if ($row["usertype"] == "client") {
                 // echo "user";
 				header("location:agency.php");
 
