@@ -18,7 +18,7 @@ include('cnx_database.php');
     </svg><a href="signup_page.php">Ajouter un client</a></button>
 
 
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg top-10 ">
+<div class=" p-12 relative overflow-x-auto shadow-md sm:rounded-lg top-10 ">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -37,7 +37,7 @@ include('cnx_database.php');
                 <th scope="col" class="px-6 py-3">
                     Password
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-6 py-3 ">
                     Nationalité
                 </th>
                 <th scope="col" class="px-6 py-3">
@@ -51,40 +51,38 @@ include('cnx_database.php');
             </tr>
         </thead>
         <tbody>
-            <?php
-            $sql = "SELECT * FROM 'users'";
-            $result = mysqli_query($nx,$sql);
-            if ($result) {
-                while ($row = $result->fetch_assoc()) {
-                    $id=$row['id'];
-                    $nom=$row['nom'];
-                    $prenom=$row['prenom'];
-                    $username=$row['username'];
-                    $password=$row['password'];
-                    $nationalite=$row['nationalite'];
-                    $genre=$row['genre'];
-                    echo `<tr>
-                    <td> '.$nom.'</td>
-                    <td> '.$prenom.'</td>
-                    <td> '.$username.'</td>
-                    <td> '.$password.'</td>
-                    <td> '.$nationalite.'</td>
-                    <td> '.$genre.'</td>
-                    </tr>;
-                    `
+        <?php
+    $sql = "SELECT * FROM `users`"; // Use backticks around 'users'
+    $result = mysqli_query($cnx, $sql);
+    if ($result) {
+        while ($row = $result->fetch_assoc()) {
+            $id = $row['userid'];
+            $nom = $row['nom'];
+            $prenom = $row['prenom'];
+            $username = $row['username'];
+            $password = $row['password'];
+            $nationalite = $row['nationalite'];
+            $genre = $row['genre'];
+            echo "<tr>
+                    <th> $id</th>
+                    <th> $nom</th>
+                    <th> $prenom</th>
+                    <th> $username</th>
+                    <th> $password</th>
+                    <th> $nationalite</th>
+                    <th> $genre</th>
                     
-                }}
+                  </tr>";
+        }
+    }
+?>
 
-
-          ?>
 
         </tbody>
     </table>
 </div>
 
-<?php
-include('sidenav.php');
-?>
+
 
 
 
