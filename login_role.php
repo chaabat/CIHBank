@@ -14,29 +14,12 @@ $cnx = new mysqli($servername,$username,$password,$dbname);
 // 	echo "Connected successfully";
 // }
 
-// if($_SERVER["REQUEST_METHOD"] == "POST"){
-// 	$username = $_POST["email"];
-// 	$password = $_POST["password"];
-
-// 	$sql = "SELECT * FROM login_user WHERE username = '$username' AND password = '$password'";
-// 	$result = mysqli_query($cnx,$sql);
-// 	$row = mysqli_fetch_array($result);
-// 	if($row["usertype"]=="admin"){
-// 		echo "admin ";
-
-// 	}elseif($row["usertype"]=="user"){
-// 		echo "user ";
-
-// 	}else{
-// 		echo "email and password are not correct";
-// 	}
-// };
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["email"];
     $password = $_POST["password"];
 
-    $sql = "SELECT * FROM login_user WHERE username = '$username' AND password = '$password'";
+    $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
     $result = mysqli_query($cnx, $sql);
 
     if ($result) {
