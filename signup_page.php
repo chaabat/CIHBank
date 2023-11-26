@@ -55,26 +55,35 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
 
 
-
-<div id="sticky-banner" tabindex="-1" class="fixed top-0 start-0 z-50 flex justify-between w-full p-4 border-b border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
-    <div class="flex items-center mx-auto">
-        <p class="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400">
-            <span class="inline-flex p-1 me-3 bg-gray-200 rounded-full dark:bg-gray-600 w-6 h-6 items-center justify-center flex-shrink-0">
-                <svg class="w-3 h-3 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 19">
-                    <path d="M15 1.943v12.114a1 1 0 0 1-1.581.814L8 11V5l5.419-3.871A1 1 0 0 1 15 1.943ZM7 4H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2v5a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2V4ZM4 17v-5h1v5H4ZM16 5.183v5.634a2.984 2.984 0 0 0 0-5.634Z"/>
-                </svg>
-                <span class="sr-only">Light bulb</span>
-            </span>
-            <span>New brand identity has been launched for the <a href="https://flowbite.com" class="inline font-medium text-blue-600 underline dark:text-blue-500 underline-offset-2 decoration-600 dark:decoration-500 decoration-solid hover:no-underline">Flowbite Library</a></span>
-        </p>
-    </div>
-    <div class="flex items-center">
-        <button data-dismiss-target="#sticky-banner" type="button" class="flex-shrink-0 inline-flex justify-center w-7 h-7 items-center text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 dark:hover:bg-gray-600 dark:hover:text-white">
-            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-            </svg>
-            <span class="sr-only">Close banner</span>
-        </button>
-    </div>
-</div>
-
+<div class="p-8 rounded border border-gray-200">   
+     <h1 class="font-medium text-3xl">Add User</h1> 
+        <p class="text-gray-600 mt-6">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos dolorem vel cupiditate laudantium dicta.</p> 
+           <form>   
+               <div class="mt-8 grid lg:grid-cols-2 gap-4">   
+                     <div>  
+                                <label for="name" class="text-sm text-gray-700 block mb-1 font-medium">Name</label>    
+                                      <input type="text" name="name" id="name" class="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="Enter your name" />   
+                                         </div>    
+                                             <div>    
+                                                      <label for="email" class="text-sm text-gray-700 block mb-1 font-medium">Email Adress</label>     
+                                                           <input type="text" name="email" id="email" class="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="yourmail@provider.com" />       
+                                                         </div>    
+                                                         
+                                                         <div>    
+                                                                  <label for="job" class="text-sm text-gray-700 block mb-1 font-medium">Job title</label>    
+                                                                        <input type="text" name="job" id="job" class="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="(ex. developer)" />   
+                                                                         </div>   
+                                                                         
+                                                                         <div>     
+                                                                            
+                                                                         <label for="brithday" class="text-sm text-gray-700 block mb-1 font-medium">Birthday</label> 
+                                                                                  <input type="text" name="brithday" id="brithday" class="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="(01/01/1993)" />    
+                                                                                    </div>   
+                                                                                   </div>   
+                                                                                      <div class="space-x-4 mt-8"> 
+                                                                                               <button type="submit" class="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50">Save</button>    
+                                                                                                   <!-- Secondary -->       
+                                                                                                    <button class="py-2 px-4 bg-white border border-gray-200 text-gray-600 rounded hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50">Cancel</button>  
+                                                                                                    </div>  
+                                                                                                  </form>  
+                                                                                                </div>
