@@ -11,8 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $nationalite = $_POST["nationalite"];
     $genre = $_POST["genre"];
     $usertype = $_POST["usertype"];
+    $cpassword=$_POST["cpassword"];
 
     if (!empty($username) && !empty($password)) {
+        if($password ===$cpassword){
         // Hash the password
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
@@ -24,7 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         } else {
             echo "error";
         }
-    }
+    }else{
+        $error[] = 'Password and confirmation password do not match!';    }
+
+
+}
 }
 
 ?>
@@ -63,28 +69,44 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
               <div class="md:col-span-5">
                 <label for="full_name">Nom</label>
-                <input type="text" name="full_name" id="full_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
+                <input type="text" name="nom" id="full_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
               </div>
 
               <div class="md:col-span-5">
                 <label for="email">Prénom</label>
-                <input type="text" name="email" id="email" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="email@domain.com" />
+                <input type="text" name="prenom" id="email" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="email@domain.com" />
               </div>
 
               <div class="md:col-span-5">
                 <label for="email">Username</label>
-                <input type="text" name="email" id="email" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="email@domain.com" />
+                <input type="text" name="username" id="email" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="email@domain.com" />
               </div>
 
               <div class="md:col-span-3">
                 <label for="address">Password</label>
-                <input type="text" name="address" id="address" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
+                <input type="password" name="password" id="address" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
               </div>
               
 
               <div class="md:col-span-2">
                 <label for="city">Reapet Password</label>
-                <input type="text" name="city" id="city" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
+                <input type="password" name="cpassword" id="city" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
+              </div>
+
+              <div class="md:col-span-2">
+              <label for="brithday" class="text-sm text-gray-700 block mb-1 font-medium">User Type</label> 
+              <SELECT name="usertype" class="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full">
+                   <option value="1">client</option>
+                 <option value="1">admin</option>
+              </SELECT>
+              </div>
+
+              <div class="md:col-span-2">
+              <label for="brithday" class="text-sm text-gray-700 block mb-1 font-medium">Genre</label> 
+              <SELECT name="genre" class="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full">
+                 <option value="1">Male</option>
+                 <option value="1">Femelle</option>
+              </SELECT>
               </div>
 
               <div class="md:col-span-5">
@@ -96,12 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 <label for="country">Country</label>
                 <div class="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
                   <input name="country" id="country" placeholder="Country" class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent" value="" />
-                  <button tabindex="-1" class="cursor-pointer outline-none focus:outline-none transition-all text-gray-300 hover:text-red-600">
-                    <svg class="w-4 h-4 mx-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                  </button>
+                 
                   <button tabindex="-1" for="show_more" class="cursor-pointer outline-none focus:outline-none border-l border-gray-200 transition-all text-gray-300 hover:text-blue-600">
                     <svg class="w-4 h-4 mx-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
                   </button>
@@ -112,18 +129,28 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
               <div class="md:col-span-1">
                 <label for="zipcode">City</label>
-                <input type="text" name="zipcode" id="zipcode" class="transition-all flex items-center h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="" value="" />
+                <input type="text" name="city" id="zipcode" class="transition-all flex items-center h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="" value="" />
               </div>
 
               <div class="md:col-span-1">
                 <label for="zipcode">Zipcode</label>
                 <input type="text" name="zipcode" id="zipcode" class="transition-all flex items-center h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="" value="" />
               </div>
+              <div class="md:col-span-3">
+                <label for="address">Phone Number</label>
+                <input type="number" name="phone" id="address" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
+              </div>
+              
+
+              <div class="md:col-span-2">
+                <label for="city"> Email</label>
+                <input type="email" name="email" id="city" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
+              </div>
 
               <div class="md:col-span-5">
                 <div class="inline-flex items-center">
                   <input type="checkbox" name="billing_same" id="billing_same" class="form-checkbox" />
-                  <label for="billing_same" class="ml-2">My billing address is different than above.</label>
+                  <label for="billing_same" class="ml-2">My billing address is different than above</label>
                 </div>
               </div>
 
@@ -139,6 +166,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
               </div>
 
             </div>
+            <?php
+if (!empty($error)) {
+    echo '<div style="color: red;">';
+    foreach ($error as $err) {
+        echo $err . '<br>';
+    }
+    echo '</div>';
+}
+?>
           </div>
         </div>
       </div>
