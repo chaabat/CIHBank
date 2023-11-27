@@ -4,6 +4,7 @@ include('cnx_database.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["email"];
     $password = $_POST["password"];
+    // $password = password_hash($password, PASSWORD_DEFAULT);
 
     $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
     $result = mysqli_query($cnx, $sql);
