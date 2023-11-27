@@ -16,11 +16,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($row) {
             if ($row["usertype"] == "admin") {
                 // echo "admin";
-				header("location:clients.php");
+				header("location:dashbord.php");
 
             } else if ($row["usertype"] == "client") {
                 // echo "user";
-				header("location:agency.php");
+				header("location:user_page.php");
 
             } else {
                 echo "Unknown user type";

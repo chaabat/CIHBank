@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         $sql = "INSERT INTO users (username, password, nom, prenom, nationalite, genre, usertype) VALUES ('$username', '$hashedPassword', '$nom', '$prenom', '$nationalite', '$genre', '$usertype')";
-        $result = mysqli_query($cnx, $sql);
+        // $result = mysqli_query($cnx, $sql);
 
         if ($result) {
             // echo "success";
@@ -91,6 +91,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
               <div class="md:col-span-2">
                 <label for="city">Reapet Password</label>
                 <input type="password" name="cpassword" id="city" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
+              </div>
+
+              <div class="md:col-span-2">
+              <label for="brithday" class="text-sm text-gray-700 block mb-1 font-medium">User Type</label> 
+              <SELECT name="usertype" class="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full">
+                   <option value="1">client</option>
+                 <option value="1">admin</option>
+              </SELECT>
               </div>
 
               <div class="md:col-span-2">
