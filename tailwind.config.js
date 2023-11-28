@@ -6,16 +6,20 @@ module.exports = {
     },
     plugins: [],
   }
-
-  module.exports = {
-    // ... other config settings
-  
+  /** @type {import('tailwindcss').Config} */
+module.exports = {
     theme: {
-      extend: {
-        colors: {
-          'custom-yellow': '#A29758',
-        },
+      colors: {
+        transparent: 'transparent',
+        current: 'currentColor',
+        'white': '#ffffff',
+        'orange': '#F0481C',
+        'cyan': '#05AEEF',
+        'metal': '#565584',
+        'tahiti': '#3ab7bf',
+        'silver': '#ecebff',
+        'bubble-gum': '#ff77e9',
+        'bermuda': '#78dcca',
       },
     },
-    plugins: [],
   }

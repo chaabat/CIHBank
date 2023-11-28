@@ -2,26 +2,22 @@
 include('cnx_database.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST["email"];
+    $username = $_POST["username"];
     $password = $_POST["password"];
-    // $password = password_hash($password, PASSWORD_DEFAULT);
 
     $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
     $result = mysqli_query($cnx, $sql);
 
     if ($result) {
         $row = mysqli_fetch_array($result);
-        $hashedPassword = $row['password'];
-
+    
         if ($row) {
+            $hashedPassword = $row['password'];
+    
             if ($row["usertype"] == "admin") {
-                // echo "admin";
-				header("location:dashbord.php");
-
+                header("location: clients.php");
             } else if ($row["usertype"] == "client") {
-                // echo "user";
-				header("location:user_page.php");
-
+                header("location: agency.php");
             } else {
                 echo "Unknown user type";
             }
@@ -31,7 +27,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "Query failed: " . mysqli_error($cnx);
     }
+    
 };
 
 
 ?>
+
+

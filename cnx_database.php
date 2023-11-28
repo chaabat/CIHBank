@@ -3,7 +3,7 @@
 $servername ="localhost";
 $username ="root";
 $password = "";
-$dbname = "cihbank";
+$dbname = "vivid";
 
 
 $cnx = new mysqli($servername,$username,$password,$dbname);

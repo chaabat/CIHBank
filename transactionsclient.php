@@ -29,7 +29,6 @@ if (isset($_SESSION['username'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <title>Clients Page</title>
     <style>
         .texto {
             font-family: 'Playfair Display', serif;
@@ -82,8 +81,8 @@ if (isset($_SESSION['username'])) {
 
     </header>
     <section class = 'bg h-[92vh]'>
-        <div class=' texto w-[30vw] h-[20vh] flex flex-row justify-center items-center gap-[10px]'>
-            <h1 class="text-[30px] font-bold">WELCOM : </h1>
+        <div class=' texto w-[40vw] h-[20vh] flex flex-row justify-center items-center gap-[10px]'>
+            <h1 class="text-[30px] font-bold">Here Is Your Accounts : </h1>
             <p class="text-[30px] font-bold"> <?php echo $userData1; ?> !</p>
         </div>
         <section class="h-[20vh] flex items-center w-[100%] ">
@@ -92,20 +91,16 @@ if (isset($_SESSION['username'])) {
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
-                                Your Id
+                                TRansactions Id
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Username
+                                Operations Type
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                First Name
+                                Amount
                             </th>
-                            <th scope="col" class="px-6 py-3">
-                                Family Name
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                My Accounts
-                            </th>
+
+
 
 
                         </tr>
@@ -113,33 +108,29 @@ if (isset($_SESSION['username'])) {
                     <tbody>
                         <?php
 
+                        $sql = "SELECT * FROM transaction WHERE accountId IN (SELECT accountId FROM account WHERE userId = $userData)";
 
-
-                        $sql = "SELECT * FROM `users` WHERE userId = '$userData'";
                         $result = $conn->query($sql);
 
 
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
 
-                                $id = $row["userId"];
+
+                                $id = $row["transactionId"];
                                 echo '
             <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                ' . $row['userId'] . '
+                ' . $row['transactionId'] . '
                 </th>
                 <td class="px-6 py-4">
-                ' . $row['username'] . '
-                </td>
+                ' . $row['type'] . '
+                MAD </td>
                 <td class="px-6 py-4">
-                ' . $row['firstName'] . '
+                ' . $row['amount'] . '
                 </td>
-                <td class="px-6 py-4">
-                ' . $row['familyName'] . '
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Show</a>
-                </td>
+               
+               
                 
             </tr>';
                             }

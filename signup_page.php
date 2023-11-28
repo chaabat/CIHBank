@@ -2,7 +2,6 @@
 
 include('cnx_database.php');
 
-
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
@@ -10,33 +9,29 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $prenom = $_POST["prenom"];
     $nationalite = $_POST["nationalite"];
     $genre = $_POST["genre"];
-    $usertype = $_POST["usertype"];
-    $cpassword=$_POST["cpassword"];
+    $cpassword = $_POST["cpassword"];
 
     if (!empty($username) && !empty($password)) {
-        if($password ===$cpassword){
-        // Hash the password
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        if ($password === $cpassword) {
+            // Hash the password
+            $hashedPassword = password_hash($password, PASSWORD_BCRYPT );
 
-        $sql = "INSERT INTO users (username, password, nom, prenom, nationalite, genre, usertype) VALUES ('$username', '$hashedPassword', '$nom', '$prenom', '$nationalite', '$genre', '$usertype')";
-        // $result = mysqli_query($cnx, $sql);
+            $sql = "INSERT INTO users (username, password, nom, prenom, nationalite, genre, usertype) VALUES ('$username', '$hashedPassword', '$nom', '$prenom', '$nationalite', '$genre')";
+            
+            $result = mysqli_query($cnx, $sql);
 
-        if ($result) {
-            // echo "success";
+            if ($result) {
+                echo "success";
+            } else {
+                echo "error: " . mysqli_error($cnx);
+            }
         } else {
-            echo "error";
+            echo "Password and confirmation password do not match!";
         }
-    }else{
-        $error[] = 'Password and confirmation password do not match!';    }
-
-
-}
+    }
 }
 
 ?>
-
-
-
 
 
 
@@ -57,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <div>
       <h2 class="font-semibold text-xl text-gray-600">Responsive Form</h2>
       <p class="text-gray-500 mb-6">Form is mobile responsive. Give it a try.</p>
-
+<form action="#" method="POST">
       <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
         <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
           <div class="text-gray-600">
@@ -69,57 +64,56 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
               <div class="md:col-span-5">
                 <label for="full_name">Nom</label>
-                <input type="text" name="nom" id="full_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
+                <input type="text" name="lastname" required placeholder="Enter Your FirstName" value="<?php echo isset($lastname) ? $lastname : ''; ?>" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  />
               </div>
 
               <div class="md:col-span-5">
                 <label for="email">Prénom</label>
-                <input type="text" name="prenom" id="email" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="email@domain.com" />
+                <input type="text" name="firstname" required placeholder="Enter Your FirstName" value="<?php echo isset($firstname) ? $firstname : ''; ?>" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  />
               </div>
 
               <div class="md:col-span-5">
                 <label for="email">Username</label>
-                <input type="text" name="username" id="email" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="email@domain.com" />
+                <input type="text" name="username" required placeholder="Enter Your username" value="<?php echo isset($username) ? $username : ''; ?>"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  />
               </div>
 
               <div class="md:col-span-3">
                 <label for="address">Password</label>
-                <input type="password" name="password" id="address" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
+                <input type="password" name="password" required placeholder="Enter Your password" value="<?php echo isset($password) ? $password : ''; ?>" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
               </div>
               
 
               <div class="md:col-span-2">
                 <label for="city">Reapet Password</label>
-                <input type="password" name="cpassword" id="city" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
+                <input type="password" name="cpassword" required placeholder="confirme Your password" value="<?php echo isset($password) ? $password : ''; ?>" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  />
               </div>
 
               <div class="md:col-span-2">
               <label for="brithday" class="text-sm text-gray-700 block mb-1 font-medium">User Type</label> 
-              <SELECT name="usertype" class="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full">
+              <SELECT name="user-type" class="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full">
                    <option value="1">client</option>
                  <option value="1">admin</option>
               </SELECT>
               </div>
 
-              <div class="md:col-span-2">
-              <label for="brithday" class="text-sm text-gray-700 block mb-1 font-medium">User Type</label> 
-              <SELECT name="usertype" class="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full">
-                   <option value="1">client</option>
-                 <option value="1">admin</option>
-              </SELECT>
-              </div>
+             
 
               <div class="md:col-span-2">
               <label for="brithday" class="text-sm text-gray-700 block mb-1 font-medium">Genre</label> 
               <SELECT name="genre" class="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full">
-                 <option value="1">Male</option>
-                 <option value="1">Femelle</option>
+                 <option value="male">Male</option>
+                 <option value="femelle">Femelle</option>
               </SELECT>
               </div>
 
               <div class="md:col-span-5">
-                <label for="email">Adress</label>
-                <input type="text" name="email" id="email" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
+                <label for="adress">Nationalité</label>
+                <input type="text" name="nationalite" id="email" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
+              </div>
+
+              <div class="md:col-span-5">
+                <label for="adress">Adress</label>
+                <input type="text" name="adress" id="email" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
               </div>
 
               <div class="md:col-span-2">
@@ -174,74 +168,27 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
               </div>
 
             </div>
-            <?php
-if (!empty($error)) {
-    echo '<div style="color: red;">';
-    foreach ($error as $err) {
-        echo $err . '<br>';
-    }
-    echo '</div>';
-}
-?>
+
           </div>
         </div>
       </div>
     </div>
+    <?php
+        if (isset($_POST['userid']) && $_POST['editing'] === 'Edit') {
+            echo '<input type="hidden" name="user_ids" value="' . implode(',', $userIds) . '">';
+            echo '<input type="hidden" name="userid" value="' . (isset($id) ? $id : "") . '">';
+            echo '<input type="submit" name="edited" value="Edit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 w-[85%] rounded cursor-pointer">';
+        } else {
+            echo '<input type="submit" name="add_user" value="Add User" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 w-[85%] rounded cursor-pointer">';
+        }
+        ?>
+    </form>
 
     
   </div>
 </div>
 
-<!-- <div class="p-8 rounded border border-gray-200">   
-     <h1 class="font-medium text-3xl">Add User</h1> 
-        <p class="text-gray-600 mt-6">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos dolorem vel cupiditate laudantium dicta.</p> 
-<form action="#" method="POST">   
-     <div class="mt-8 grid lg:grid-cols-2 gap-4">  
-     <div>    
-     <label for="job" class="text-sm text-gray-700 block mb-1 font-medium">Nom</label>    
-     <input type="text" name="nom" id="nom" class="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" />   
-     </div> 
-     <div>  
-     <label for="prenom" class="text-sm text-gray-700 block mb-1 font-medium">Prenom</label>    
-     <input type="text" name="prenom" id="prenom" class="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"  />   
-     </div> 
-        
-     <div>    
-     <label for="email" class="text-sm text-gray-700 block mb-1 font-medium">Username</label>     
-     <input type="text" name="username" id="username" class="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"  />       
-     </div>    
-                                                                                                                           
-    <div>                                                                            
-    <label for="brithday" class="text-sm text-gray-700 block mb-1 font-medium">Password</label> 
-    <input type="password" name="password" id="password" class="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"  />    
-    </div> 
 
-    <div>                                                                            
-    <label for="brithday" class="text-sm text-gray-700 block mb-1 font-medium">User Type</label> 
-    <SELECT class="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full">
-     <option value="1">client</option>
-     <option value="1">admin</option>
-  </SELECT>
-</div>
-
-
-  
-
-    <div>    
-     <label for="email" class="text-sm text-gray-700 block mb-1 font-medium">Nationalité</label>     
-     <input type="text" name="nationalite" id="nationalite" class="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"  />       
-     </div>
-     <div>    
-     <label for="email" class="text-sm text-gray-700 block mb-1 font-medium">Genre</label>     
-     <input type="text" name="genre" id="genre" class="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"  />       
-     </div>
-    
-
-    </div>   
-    <div class="space-x-4 mt-8"> 
-   <button type="submit" class="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50">Sign up</button>    
-                                                                                                    -->
-    
 </body>
 </html>
 
