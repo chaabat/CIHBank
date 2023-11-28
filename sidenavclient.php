@@ -2,7 +2,7 @@
    <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
       <a href="index.php" class="flex items-center ps-3.5 mb-5">
          <img src="logo.png" class="h-8 me-3 sm:h-8" alt="bank Logo" />
-         <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">CIH BANK</span>
+         <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">CIH BANK <p class="self-center text-sm font-semibold whitespace-nowrap dark:text-white">Clients</p></span>
       </a>
       <ul class="space-y-2 font-medium">
         

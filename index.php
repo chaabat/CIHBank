@@ -38,7 +38,7 @@ $result = mysqli_stmt_get_result($stmt);
                 $_SESSION['username'] = $row['username'];
                 
                 if ($_SESSION['user_type'] === 'admin') {
-                    header("Location: banques.php");
+                    header("Location: Accounts.php");
                     exit;
                 } elseif ($_SESSION['user_type'] === 'client') {
                     header("Location: clients.php");
