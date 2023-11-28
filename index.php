@@ -18,6 +18,7 @@ INNER JOIN roleofuser ON users.userId = roleofuser.userId
 WHERE users.username = ?";
 
 
+
 $stmt = mysqli_prepare($conn, $query);
 mysqli_stmt_bind_param($stmt, "s", $username);
 mysqli_stmt_execute($stmt);
@@ -32,21 +33,23 @@ $result = mysqli_stmt_get_result($stmt);
 
             // Verify hashed password
             if (password_verify($password, $row['pw'])) {
-                $roleName = $row['rolename'];
-                $_SESSION['user_type'] = $roleName;
-
+                $_SESSION['user_type'] = $row['rolename'];
+                $_SESSION['user_id'] = $row['userId'];
+                $_SESSION['username'] = $row['username'];
+                
                 if ($_SESSION['user_type'] === 'admin') {
-                    header("Location: users.php");
-                    exit();
+                    header("Location: banques.php");
+                    exit;
                 } elseif ($_SESSION['user_type'] === 'client') {
                     header("Location: clients.php");
-                    exit();
+                    exit;
                 } else {
                     // Handle other user types if needed
                 }
             } else {
                 $error[] = 'Incorrect username or password!';
             }
+            
         } else {
             $error[] = 'Incorrect username or password!';
         }
