@@ -90,11 +90,11 @@ include('sidenav.php');
                             <td class='border-[2px] border-black border-solid '> " . $row["balance"] . " </td>
 
                             <td class='border-[2px] border-black border-solid '>
-                            <form action='transactions.php' method='post' class='height-[80px] cursor-pointer w-[100%] hover:bg-black bg-white hover:text-white text-black '>
+                            <button action='transactions.php' method='post' class='text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 '>
 
                                 <input type='hidden' name='accountid' value='" . $row["accountId"] . "'>
                                 <input type='submit' name='submit'  value='Transactions'>
-                                </form>
+                                </button>
                                 </td>
                                
 
@@ -131,9 +131,9 @@ include('sidenav.php');
                         <th class="border-[2px] border-black border-solid w-[15%] ">ID</th>
                             <th class="border-[2px] border-black border-solid w-[15%] ">RIB</th>
                             <th class="border-[2px] border-black border-solid w-[15%] ">Balance</th>
-                            <th class="border-[2px] border-black border-solid w-[15%] ">Edit</th>
-                            <th class="border-[2px] border-black border-solid w-[15%] ">Delete</th>
                             <th class="border-[2px] border-black border-solid w-[15%] ">Transaction</th>
+                            <th class="border-[2px] border-black border-solid w-[15%] ">Update</th>
+                            <th class="border-[2px] border-black border-solid w-[15%] ">Delete</th>
                         </tr>
                     </thead>';
                 while ($row = $result2->fetch_assoc()) {
